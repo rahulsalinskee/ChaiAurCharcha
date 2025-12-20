@@ -5,10 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ChaiAurCharcha.UI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:ChaiAurCharcha.UI.MVVM.ViewModel"
     Title="MainWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -19,6 +23,7 @@
             <TextBox Height="100" DockPanel.Dock="Top" />
             <Button
                 Height="25"
+                Command="{Binding ConnectToServerCommand}"
                 Content="Connect"
                 DockPanel.Dock="Top" />
             <ListView />

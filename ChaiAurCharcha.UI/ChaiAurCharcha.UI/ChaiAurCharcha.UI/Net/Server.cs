@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Net.Sockets;
 
 namespace ChaiAurCharcha.UI.Net
 {
@@ -17,30 +14,30 @@ namespace ChaiAurCharcha.UI.Net
             this._tcpClient = new TcpClient();
         }
 
-        public void ConnectToServer(string ip, int port)
+        public void ConnectToServer()
         {
-            this._tcpClient.Connect(ip, port);
+            Task.Run(() => ConnectServerAsync(ipAddress: LOCAL_SERVER_IP, port: PORT));
         }
 
-        public void Connect(string ipAddress, int port)
+        private async Task ConnectServerAsync(string ipAddress, int port)
         {
             try
             {
                 if (!_tcpClient.Connected)
                 {
-                    Console.WriteLine("Attempting to connect to server at {0}:{1}", LOCAL_SERVER_IP, PORT);
-                    this._tcpClient.ConnectAsync(host: LOCAL_SERVER_IP, port: PORT);
+                    Console.WriteLine("Attempting to connect to server at {0}:{1}", ipAddress, port);
+                    await this._tcpClient.ConnectAsync(host: ipAddress, port: port);
                 }
 
                 Console.WriteLine("Connected to server at {0}:{1}", ipAddress, port);
             }
-            catch (SocketException ex)
+            catch (SocketException socketException)
             {
-                Console.WriteLine("SocketException: {0}", ex.Message);
+                Console.WriteLine("SocketException: {0}", socketException.Message);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                Console.WriteLine("Exception: {0}", ex.Message);
+                Console.WriteLine("Exception: {0}", exception.Message);
             }
         }
     }
