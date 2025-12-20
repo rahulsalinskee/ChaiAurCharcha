@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/ChaiAurCharcha.Client/">
+    <Project Path="ChaiAurCharcha.UI/ChaiAurCharcha.UI.csproj" />
+  </Folder>
+  <Folder Name="/ChaiAurCharcha.Server/">
+    <Project Path="../../ChaiAurCharcha.Server/ChaiAurCharcha.Server/ChaiAurCharcha.Server.csproj" />
+  </Folder>
+</Solution>
