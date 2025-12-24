@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:ChaiAurCharcha.UI.MVVM.ViewModel"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="815"
+    Height="475"
     mc:Ignorable="d">
     <Window.DataContext>
         <viewModel:MainViewModel />
@@ -20,25 +20,37 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel>
-            <TextBox Height="100" DockPanel.Dock="Top" />
+            <TextBox
+                Height="100"
+                DockPanel.Dock="Top"
+                Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" />
             <Button
                 Height="25"
                 Command="{Binding ConnectToServerCommand}"
                 Content="Connect"
                 DockPanel.Dock="Top" />
-            <ListView />
+            <ListView ItemsSource="{Binding Users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding UserName}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </DockPanel>
 
         <StackPanel Grid.Column="1">
-            <ListView Height="380" />
+            <ListView Height="380" ItemsSource="{Binding Messages}" />
             <StackPanel Orientation="Horizontal">
                 <TextBox
                     Width="545"
                     Height="55"
-                    VerticalContentAlignment="Center" />
+                    VerticalContentAlignment="Center"
+                    Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" />
                 <Button
+                    Width="55"
                     Height="55"
                     VerticalContentAlignment="Center"
+                    Command="{Binding SendMessageCommand}"
                     Content="Send" />
             </StackPanel>
         </StackPanel>
