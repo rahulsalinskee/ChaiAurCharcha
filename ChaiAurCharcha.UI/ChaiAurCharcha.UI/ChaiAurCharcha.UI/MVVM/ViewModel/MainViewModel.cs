@@ -84,12 +84,8 @@ namespace ChaiAurCharcha.UI.MVVM.ViewModel
             SubscribeUserConnectionEvent();
             SubscribeMessageEvent();
             SubscriveUserDisconnectEvent();
-            ConnectToServerCommand = new RelayCommand(
-                execute: server => _server?.ConnectToServer(userName: UserName),
-                canExecute: server => !string.IsNullOrEmpty(UserName));
-            SendMessageCommand = new RelayCommand(
-                execute: server => SendMessageAsync(message: Message).GetAwaiter().GetResult(),
-                canExecute: server => !string.IsNullOrEmpty(Message));
+            ConnectToServerCommand = new RelayCommand(execute: server => _server?.ConnectToServer(userName: UserName), canExecute: server => !string.IsNullOrEmpty(UserName));
+            SendMessageCommand = new RelayCommand(execute: server => SendMessageAsync(message: Message).GetAwaiter().GetResult(), canExecute: server => !string.IsNullOrEmpty(Message));
         }
         #endregion
 

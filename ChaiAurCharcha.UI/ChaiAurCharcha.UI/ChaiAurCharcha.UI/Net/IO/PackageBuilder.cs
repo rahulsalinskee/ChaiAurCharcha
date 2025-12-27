@@ -85,7 +85,9 @@ namespace ChaiAurCharcha.UI.Net.IO
         private void ThrowIfDisposed()
         {
             if (_disposed)
+            {
                 throw new ObjectDisposedException(nameof(PackageBuilder));
+            }
         }
     }
 }
